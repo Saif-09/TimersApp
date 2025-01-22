@@ -121,7 +121,6 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            {/* Add a button to navigate to HistoryScreen */}
             <TouchableOpacity
                 style={styles.historyButton}
                 onPress={() => navigation.navigate('History')}

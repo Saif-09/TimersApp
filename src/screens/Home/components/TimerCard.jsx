@@ -11,7 +11,6 @@ const TimerCard = ({ timer, onTimerCompletion }) => {
     const progress = useRef(new Animated.Value(0)).current;
     const [halfwayAlertTriggered, setHalfwayAlertTriggered] = useState(false);
 
-
     if (!timer) {
         return (
             <View style={styles.placeholder}>
@@ -66,12 +65,11 @@ const TimerCard = ({ timer, onTimerCompletion }) => {
         <TouchableOpacity
             style={[
                 styles.timerCard,
-                timer.isCompleted && styles.completedTimerCard, // Apply completed style if timer is completed
+                timer.isCompleted && styles.completedTimerCard, 
             ]}
             onPress={() => setIsExpanded(!isExpanded)}
             activeOpacity={0.9}
         >
-            {/* Timer Details and Controls */}
             <View style={styles.timerDetailsContainer}>
                 <View style={styles.timerTextContainer}>
                     <Text style={styles.timerCardTitle}>{timer.timerName}</Text>
@@ -79,7 +77,6 @@ const TimerCard = ({ timer, onTimerCompletion }) => {
                     <Text style={styles.timerCardCategory}>{timer.category}</Text>
                 </View>
 
-                {/* Timer Controls */}
                 <View style={styles.controlsContainer}>
                     {!timer.isRunning && !timer.isPaused && (
                         <TouchableOpacity
@@ -114,7 +111,6 @@ const TimerCard = ({ timer, onTimerCompletion }) => {
                 </View>
             </View>
 
-            {/* Progress Bar */}
             {isExpanded && (
                 <View style={styles.progressBarContainer}>
                     <Animated.View
@@ -149,8 +145,8 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     completedTimerCard: {
-        borderRightWidth: 5, // Add a thick border on the right side
-        borderRightColor: '#72baa0', // Greenish color for the border
+        borderRightWidth: 5, 
+        borderRightColor: '#72baa0', 
     },
     placeholder: {
         backgroundColor: '#F5F5F5',

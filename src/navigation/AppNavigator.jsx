@@ -10,7 +10,6 @@ const AppNavigator = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
-                {/* Home Screen */}
                 <Stack.Screen
                     name="Home"
                     component={HomeScreen}
@@ -24,11 +23,10 @@ const AppNavigator = () => {
                             fontWeight: '400',
                             fontSize: 24,
                         },
-                        headerTitleAlign: 'center', // This aligns the header title to the center
+                        headerTitleAlign: 'center', 
                     }}
                 />
 
-                {/* History Screen */}
                 <Stack.Screen
                     name="History"
                     component={HistoryScreen}

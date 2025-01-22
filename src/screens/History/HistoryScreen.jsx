@@ -1,27 +1,19 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useSelector } from 'react-redux';
-import TimerCard from '../Home/components/TimerCard';
+
 import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
-
+import HistoryTimerCard from './components/HistoryTimerCard';
 
 const HistoryScreen = () => {
-    const timers = useSelector((state) => state.timer.timers);
-    const completedTimers = timers.filter((timer) => timer.isCompleted);
+    const history = useSelector((state) => state.timer.history); 
 
     const exportHistory = async () => {
         try {
-            // Convert completed timers to JSON
-            const jsonData = JSON.stringify(completedTimers, null, 2);
-    
-            // Define the file path in the app's document directory
+            const jsonData = JSON.stringify(history, null, 2);
             const filePath = `${RNFS.DocumentDirectoryPath}/timer_history.json`;
-    
-            // Write the JSON data to the file
             await RNFS.writeFile(filePath, jsonData, 'utf8');
-    
-            // Share the file using react-native-share
             await Share.open({
                 url: `file://${filePath}`,
                 type: 'application/json',
@@ -40,10 +32,10 @@ const HistoryScreen = () => {
 
     return (
         <View style={styles.container}>
-            {completedTimers.length > 0 ? (
+            {history.length > 0 ? (
                 <ScrollView contentContainerStyle={styles.timerCardsContainer}>
-                    {completedTimers.map((timer) => (
-                        <TimerCard key={timer.id} timer={timer} />
+                    {history.map((timer) => (
+                        <HistoryTimerCard key={timer.id} timer={timer} /> 
                     ))}
                 </ScrollView>
             ) : (
@@ -52,7 +44,6 @@ const HistoryScreen = () => {
                 </View>
             )}
 
-            {/* Add an export button */}
             <TouchableOpacity style={styles.exportButton} onPress={exportHistory}>
                 <Text style={styles.exportButtonText}>Export History as JSON</Text>
             </TouchableOpacity>
@@ -65,13 +56,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F5F5F5',
         padding: 20,
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: '500',
-        textAlign: 'center',
-        color: '#4A4A4A',
-        marginBottom: 20,
     },
     timerCardsContainer: {
         paddingBottom: 20,

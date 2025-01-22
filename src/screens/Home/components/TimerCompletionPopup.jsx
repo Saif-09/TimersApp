@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'; // Import Ionicons or any other icon set
+import Icon from 'react-native-vector-icons/Ionicons'; 
 
 const TimerCompletionPopup = ({ isVisible, timerName, onClose }) => {
     return (
@@ -12,13 +12,12 @@ const TimerCompletionPopup = ({ isVisible, timerName, onClose }) => {
         >
             <View style={styles.modalOverlay}>
                 <View style={styles.modalContent}>
-                    {/* Celebration Icon */}
+                    
                     <Icon name="trophy" size={50} color="#FFD700" style={styles.icon} />
                     <Text style={styles.congratsText}>Congratulations!</Text>
                     <Text style={styles.timerNameText}>
                         Your timer <Text style={{ fontWeight: '600' }}>{timerName}</Text> is completed.
                     </Text>
-                    {/* Close Button with Icon */}
                     <TouchableOpacity style={styles.closeButton} onPress={onClose}>
                         <Text style={styles.closeButtonText}>Close</Text>
                     </TouchableOpacity>

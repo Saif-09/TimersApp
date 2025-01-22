@@ -1,9 +1,9 @@
-// timerSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {
-    timers: [], 
+    timers: [], // Active timers
+    history: [], // Completed timers (immutable)
     isTimerCompleted: false,
     completedTimerName: '',
 };
@@ -20,7 +20,11 @@ const loadStateFromAsyncStorage = async () => {
     try {
         const savedState = await AsyncStorage.getItem('timerState');
         if (savedState) {
-            return JSON.parse(savedState);
+            const parsedState = JSON.parse(savedState);
+            if (!parsedState.history) {
+                parsedState.history = [];
+            }
+            return parsedState;
         }
     } catch (e) {
         console.error('Failed to load state from AsyncStorage', e);
@@ -38,7 +42,7 @@ const timerSlice = createSlice({
         addTimer: (state, action) => {
             const { timerName, duration, category } = action.payload;
             const newTimer = {
-                id: Date.now(), 
+                id: Date.now(),
                 timerName,
                 duration,
                 category,
@@ -46,7 +50,6 @@ const timerSlice = createSlice({
                 isRunning: false,
                 isPaused: false,
                 isCompleted: false,
-                
             };
             state.timers.push(newTimer);
             saveStateToAsyncStorage(state);
@@ -89,6 +92,11 @@ const timerSlice = createSlice({
             if (timer) {
                 timer.isRunning = false;
                 timer.isCompleted = true;
+
+                // Log the completed timer in history
+                const completedTimer = { ...timer }; // Create a copy of the timer
+                state.history.push(completedTimer); // Add it to history
+
                 state.isTimerCompleted = true;
                 state.completedTimerName = timer.timerName;
             }
