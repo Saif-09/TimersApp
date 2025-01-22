@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { StoreContext } from '../../state/store';
 import ProgressBar from './ProgressBar';
+import { StoreContext } from '../state/store';
 
 const TimerItem = ({ timer }) => {
     const { dispatch } = useContext(StoreContext);
