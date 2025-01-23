@@ -31,7 +31,7 @@ Before you begin, ensure you have the following installed:
 
 ## Navigation:
 
-- **React Navigation**: The app uses React Navigation for navigation between screens, assuming that the app will have multiple screens and a need for a stack-based navigation系统。
+- **React Navigation**: The app uses React Navigation for navigation between screens, assuming that the app will have multiple screens and a need for a stack-based navigation。
 
 ## Timer Logic:
 
@@ -47,11 +47,11 @@ Before you begin, ensure you have the following installed:
 
 ## Dependencies:
 
-- **React Native**: The app assumes that certain第三方库（如react-native-vector-icons, react-native-fs, react-native-share）等库的安装和配置。
+- **React Native**: The app assumes that certain（react-native-vector-icons, react-native-fs, react-native-share）。
 
 ## Platform Compatibility:
 
-- **iOS and Android平台**: The app is designed to be compatible with both iOS and Android平台的。
+- **iOS and Android**: The app is designed to be compatible with both iOS and Android。
 
 ## Error Handling:
 
